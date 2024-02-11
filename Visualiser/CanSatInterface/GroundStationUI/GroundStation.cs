@@ -1,3 +1,4 @@
+using ScottPlot;
 using ScottPlot.Panels;
 using ScottPlot.Plottables;
 using System.IO.Ports;
@@ -78,6 +79,19 @@ namespace GroundStationUI
             accelerationZLogger = accelerationPlot.Plot.Add.DataLogger();
             accelerationPlot.Plot.Axes.Bottom.Label.Text = "Time (s)";
             accelerationPlot.Plot.Axes.Left.Label.Text = ("Acceleration (m/s²)");
+            LegendItem[] legendItems =
+            {
+                new LegendItem()
+                {
+                    Label = "X",
+                    LineColor = accelerationXLogger.Color
+                },
+                new LegendItem(){
+                    Label = "Y",
+                    LineColor = accelerationYLogger.Color
+                }
+            };
+            accelerationPlot.Plot.ShowLegend(legendItems, ScottPlot.Alignment.LowerRight);
 
             // battery graph
             batteryPlot = new ScottPlot.WinForms.FormsPlot();
